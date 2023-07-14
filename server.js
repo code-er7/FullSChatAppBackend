@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import userRouter from './Routes/userRoute.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
+import chatRoutes from "./Routes/chatRoutes.js"
 
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.get('/' , (req , res)=>{
     res.send("API is working")
 });
 app.use('/api/user' , userRouter);
+app.use('/api/chat' , chatRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
