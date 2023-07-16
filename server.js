@@ -7,12 +7,19 @@ import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import chatRoutes from "./Routes/chatRoutes.js";
 import messageRoutes from "./Routes/messageRoutes.js";
 import { Socket } from "socket.io";
+import cors from "cors";
 
 dotenv.config();
 connectDB();
 const app = express();
 app.use(express.json());
-
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.get("/", (req, res) => {
   res.send("API is working");
 });
