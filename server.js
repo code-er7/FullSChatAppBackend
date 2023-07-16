@@ -40,7 +40,7 @@ import { removeFromGroup } from "./controllers/chatControllers.js";
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URL,
   },
 });
 io.on("connection", (socket) => {
